@@ -540,6 +540,15 @@
       font-weight: 700;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+    }
+
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -682,7 +691,7 @@
       </div>
 
       <div class="hero-image">
-        <img src="images/profile.jpg" alt="Profile portrait of Sarla" />
+        <img src="images/profile.jpg" alt="Profile portrait of Sarla">
       </div>
     </section>
 
@@ -694,7 +703,7 @@
           <p>I enjoy applying what I learn through projects, internships, and coding practice, and I’m focused on becoming a well-rounded developer with both technical depth and practical experience.</p>
         </div>
 
-        <div class="card-grid" aria-label="Internship experience">
+        <div class="card-grid" role="region" aria-label="Internship experience">
           <article class="card">
             <h3>Full Stack Web Development</h3>
             <p class="meta">Jyesta Corporate Entity</p>
@@ -708,20 +717,24 @@
           </article>
         </div>
 
-        <div class="stat-grid" aria-label="Portfolio statistics">
+        <div class="stat-grid" role="region" aria-label="Portfolio statistics">
           <article class="stat-card">
+            <h3 class="sr-only">Statistic</h3>
             <strong>2+</strong>
             Internships
           </article>
           <article class="stat-card">
+            <h3 class="sr-only">Statistic</h3>
             <strong>3+</strong>
             Projects
           </article>
           <article class="stat-card">
+            <h3 class="sr-only">Statistic</h3>
             <strong>100+</strong>
             LeetCode Solved
           </article>
           <article class="stat-card">
+            <h3 class="sr-only">Statistic</h3>
             <strong>2027</strong>
             Graduation
           </article>
@@ -795,7 +808,7 @@
         <article class="project-card">
           <h3>Studopedia</h3>
           <p>An educational website built using GoDaddy hosting and domain services with user-friendly interface for study materials and notes.</p>
-          <div class="tag-row" aria-label="Technologies used in Studopedia">
+          <div class="tag-row" role="list">
             <span class="tag">HTML</span>
             <span class="tag">CSS</span>
             <span class="tag">GoDaddy</span>
@@ -805,7 +818,7 @@
         <article class="project-card">
           <h3>Caesar Cipher Encoder/Decoder</h3>
           <p>A web app using Python and Flask for encoding and decoding messages with interactive HTML/JS frontend.</p>
-          <div class="tag-row" aria-label="Technologies used in Caesar Cipher Encoder/Decoder">
+          <div class="tag-row" role="list">
             <span class="tag">Python</span>
             <span class="tag">Flask</span>
             <span class="tag">HTML</span>
@@ -817,7 +830,7 @@
         <article class="project-card">
           <h3>Body Posture Recognition System</h3>
           <p>Real-time posture detection using MediaPipe BlazePose and OpenCV. Detects 33 body landmarks with 87-92% accuracy on CPU systems.</p>
-          <div class="tag-row" aria-label="Technologies used in Body Posture Recognition System">
+          <div class="tag-row" role="list">
             <span class="tag">Python</span>
             <span class="tag">MediaPipe</span>
             <span class="tag">OpenCV</span>
@@ -829,7 +842,7 @@
     <section id="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Contact</h2>
       <div class="contact-layout">
-        <div class="contact-details" aria-label="Contact details">
+        <div class="contact-details" role="region" aria-label="Contact details">
           <ul>
             <li>Email: <a href="mailto:Sarla.92784@gmail.com">Sarla.92784@gmail.com</a></li>
             <li>Phone: 9278485739</li>
@@ -867,7 +880,7 @@
     </section>
   </main>
   <footer class="site-footer">
-    © 2026 Sarla · B.Tech CSE, Sharda University · <a href="https://www.linkedin.com/in/sarla-cse" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    © 2026 Sarla · B.Tech CSE, Sharda University · <a href="https://sarla-portfolio.netlify.app" target="_blank" rel="noopener noreferrer">https://sarla-portfolio.netlify.app</a> · <a href="https://www.linkedin.com/in/sarla-cse" target="_blank" rel="noopener noreferrer">LinkedIn</a>
   </footer>
 </body>
 </html>
