@@ -8,8 +8,7 @@
 
 This portfolio showcases advanced CSS techniques learned in Week 5 of the web development course. The goal was to redesign a portfolio using CSS Grid for layout, CSS custom properties for theming, Flexbox for component-level alignment, and smooth animations to enhance the user experience.
 
-**Live Demo:** [View on GitHub Pages](#) _(add your link here)_
-**Repository:** [GitHub](#) _(add your link here)_
+
 
 ---
 
@@ -24,7 +23,7 @@ This portfolio showcases advanced CSS techniques learned in Week 5 of the web de
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
+   git clone https://github.com/sarla92784/portfolio
    cd portfolio
    ```
 
