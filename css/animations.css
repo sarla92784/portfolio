@@ -1,0 +1,288 @@
+/* ============================================
+   animations.css — Keyframes, Transitions,
+   Scroll Reveals, Hover Effects
+   Week 5: Advanced CSS & Modern Layouts
+   ============================================ */
+
+/* ===== KEYFRAME DEFINITIONS ===== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1);   opacity: 0.6; }
+  50%       { transform: scale(1.1); opacity: 1;   }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 0 10px var(--color-primary-glow); }
+  50%       { box-shadow: 0 0 30px var(--color-primary-glow), 0 0 60px var(--color-primary-glow); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* ===== HERO ENTRANCE ANIMATIONS ===== */
+
+.animate-fade-in {
+  animation: fadeIn 0.7s ease-out both;
+}
+
+.animate-slide-up {
+  animation: fadeInUp 0.7s ease-out both;
+}
+
+/* Staggered delays */
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.30s; }
+.delay-3 { animation-delay: 0.45s; }
+.delay-4 { animation-delay: 0.60s; }
+
+/* ===== HERO AVATAR FLOAT ===== */
+.hero__avatar-ring {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* ===== HERO BLOB PULSE ===== */
+.hero__blob {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* ===== SCROLL REVEAL (toggled by IntersectionObserver in HTML) ===== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger within grids */
+.skills__grid   .scroll-reveal:nth-child(1) { transition-delay: 0.05s; }
+.skills__grid   .scroll-reveal:nth-child(2) { transition-delay: 0.12s; }
+.skills__grid   .scroll-reveal:nth-child(3) { transition-delay: 0.19s; }
+.skills__grid   .scroll-reveal:nth-child(4) { transition-delay: 0.26s; }
+.skills__grid   .scroll-reveal:nth-child(5) { transition-delay: 0.33s; }
+.skills__grid   .scroll-reveal:nth-child(6) { transition-delay: 0.40s; }
+
+.projects__grid .scroll-reveal:nth-child(1) { transition-delay: 0.05s; }
+.projects__grid .scroll-reveal:nth-child(2) { transition-delay: 0.15s; }
+.projects__grid .scroll-reveal:nth-child(3) { transition-delay: 0.25s; }
+
+.about__stats   .scroll-reveal:nth-child(1) { transition-delay: 0.05s; }
+.about__stats   .scroll-reveal:nth-child(2) { transition-delay: 0.12s; }
+.about__stats   .scroll-reveal:nth-child(3) { transition-delay: 0.19s; }
+
+/* ===== PROJECT CARD HOVER ===== */
+.project-card {
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Image zoom on hover inside card */
+.project-card__img-wrap {
+  overflow: hidden;
+}
+.project-card__img-wrap img {
+  transition: transform 0.5s ease;
+}
+.project-card:hover .project-card__img-wrap img {
+  transform: scale(1.08);
+}
+
+/* ===== SKILL CARD HOVER — progress bar glow ===== */
+.skill-card:hover .skill-card__fill {
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+/* ===== STAT CARD — scale on hover ===== */
+.stat-card {
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal);
+}
+.stat-card:hover {
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+/* ===== CERT CARD HOVER ===== */
+.cert-card {
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal);
+}
+.cert-card:hover {
+  transform: translateY(-6px) rotate(1deg);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== NAV LINK UNDERLINE ===== */
+.nav__link::after {
+  transition: width var(--transition-normal);
+}
+
+/* ===== BUTTON RIPPLE EFFECT ===== */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+.btn:active::after { opacity: 1; }
+
+/* ===== THEME TOGGLE SPIN ===== */
+.theme-toggle__icon {
+  display: inline-block;
+  transition: transform 0.5s ease;
+}
+.theme-toggle:hover .theme-toggle__icon {
+  transform: rotate(20deg) scale(1.2);
+}
+
+/* ===== SECTION TITLE — slide up on load ===== */
+.section__title {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* ===== FORM INPUT FOCUS TRANSITION ===== */
+.form__input {
+  transition: border-color var(--transition-fast),
+              box-shadow var(--transition-fast),
+              background var(--transition-fast);
+}
+
+/* ===== PSEUDO-ELEMENT DECORATIONS ===== */
+
+/* Glowing dot before hero eyebrow */
+.hero__eyebrow::before {
+  content: '▹ ';
+  color: var(--color-accent);
+}
+
+/* Shimmer on nav logo */
+.nav__logo {
+  background: linear-gradient(
+    90deg,
+    var(--color-text) 0%,
+    var(--color-primary) 40%,
+    var(--color-accent) 60%,
+    var(--color-text) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Section title accent pseudo-element (also in main.css for structure) */
+.section__title::after {
+  transition: width var(--transition-slow);
+}
+.section__title:hover::after {
+  width: 120px;
+}
+
+/* ===== GALLERY HOVER OVERLAY ===== */
+.gallery__item {
+  position: relative;
+  overflow: hidden;
+}
+.gallery__item::after {
+  content: '🔍';
+  position: absolute;
+  inset: 0;
+  background: rgba(124, 111, 247, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+.gallery__item:hover::after { opacity: 1; }
+
+/* ===== REDUCED MOTION PREFERENCE ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

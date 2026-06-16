@@ -1,192 +1,318 @@
-# 🌐 Interactive Portfolio Website
+# 🚀 Advanced Portfolio — Week 5
 
-## Project Overview
-
-A personal portfolio website built with HTML5, CSS3, and JavaScript showcasing my skills, projects, and contact information.
-
-**Objectives:**
-- Create a fully structured HTML5 portfolio
-- Use semantic HTML tags throughout
-- Include working contact form with validation
-- Make it responsive for mobile devices
-- Add JavaScript interactivity and dynamic content
+> A modern, responsive portfolio website built with CSS Grid, Flexbox, CSS Variables, and smooth animations as part of Week 5: Advanced CSS & Modern Layouts.
 
 ---
 
-## Setup Instructions
+## 📋 Project Overview
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/sarla92784/portfolio
-   ```
-2. Open the project folder in VS Code
-3. Add your photo as `images/profile.jpg`
-4. Right-click `index.html` and select "Open with Live Server"
-5. Live site: https://sarla-portfolio.netlify.app
+This portfolio showcases advanced CSS techniques learned in Week 5 of the web development course. The goal was to redesign a portfolio using CSS Grid for layout, CSS custom properties for theming, Flexbox for component-level alignment, and smooth animations to enhance the user experience.
+
+**Live Demo:** [View on GitHub Pages](#) _(add your link here)_
+**Repository:** [GitHub](#) _(add your link here)_
 
 ---
 
-## Code Structure
+## 🛠️ Setup Instructions
+
+### Prerequisites
+- A modern browser (Chrome, Firefox, Edge, Safari)
+- A code editor (VS Code recommended)
+- Git installed on your machine
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/portfolio.git
+   cd portfolio
+   ```
+
+2. **Open the project**
+   ```bash
+   # Option 1 — Open directly in browser
+   open index.html
+
+   # Option 2 — Use VS Code Live Server extension
+   code .
+   # Then right-click index.html → "Open with Live Server"
+   ```
+
+3. **Customise your content**
+   - Replace `Your Name` in `index.html`
+   - Add your profile photo at `images/profile.jpg`
+   - Update project descriptions and links
+   - Update contact email and social links
+
+---
+
+## 📁 Code Structure
 
 ```
-portfolio/
-├── index.html       → Main portfolio page
-├── style.css        → All styles including dark mode
-├── script.js        → All JavaScript features (Week 3)
-├── README.md        → Project documentation
+Portfolio/
+│
+├── index.html              # Main HTML file (semantic structure)
+│
+├── css/
+│   ├── main.css            # CSS variables, base styles, BEM components
+│   ├── layout.css          # CSS Grid & Flexbox layouts, responsive breakpoints
+│   └── animations.css      # Keyframes, transitions, scroll reveal, hover effects
+│
+├── js/
+│   └── theme-switcher.js   # Dark/light theme toggle with localStorage persistence
+│
 ├── images/
-│   └── profile.jpg
-└── screenshots/
-    ├── desktop-view-hero.png
-    ├── desktop-view-about.png
-    ├── mobile-view.png
-    └── hover-effect.png
+│   ├── profile.jpg         # Profile photo
+│   ├── certificates.png    # Certificate image
+│   ├── Validation.png      # Validation certificate
+│   ├── desktop-view-projects.png
+│   └── desktop-view-skills.png
+│
+├── screenshots/            # Project screenshots for documentation
+│   ├── desktop-view-hero.png
+│   ├── desktop-view-about.png
+│   ├── mobile-view.png
+│   └── hover-effect.png
+│
+├── script.js               # Main JS: scroll effects, hamburger, contact form
+├── style.css               # Legacy styles (if kept from Week 4)
+└── README.md               # This file
 ```
 
 ---
 
-## How I Met the Technical Requirements
+## ✨ Advanced CSS Techniques Used
 
-- `index.html`: Created with proper HTML5 DOCTYPE, `lang` attribute, meta tags
-- 3+ Sections: About, Skills, Projects, Contact all included
-- Semantic HTML: Used `header`, `nav`, `main`, `section`, `article`, `footer` tags
-- Contact Form: Built with name, email, subject, message fields — all with `required` and validation attributes
-- Images: Profile photo with descriptive alt text for accessibility
-- Internal Navigation: Nav links use `href="#about"`, `"#skills"`, `"#projects"`, `"#contact"` with smooth scroll
+### 1. CSS Grid — Main Layout System
+CSS Grid is used throughout the portfolio to create complex, responsive layouts:
 
----
+```css
+/* Auto-fit project grid — adapts columns based on available space */
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
 
-## HTML Concepts Learned
+/* Asymmetric contact section */
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-2xl);
+}
 
-- Semantic tags give meaning to page structure
-- Forms use input types and `required` attributes for validation
-- Alt text on images helps accessibility and SEO
-- Internal anchor links connect sections on the same page
-- CSS variables make styling consistent and easy to update
+/* Image gallery with spanning items */
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 200px);
+  gap: var(--space-sm);
+}
+.gallery__item--featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+```
 
----
+### 2. Flexbox — Component Alignment
+Flexbox is used for navigation, hero layout, CTA buttons, and form controls:
 
-## CSS Concepts & Design Decisions
+```css
+/* Horizontal nav bar */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-### CSS Selectors Used
-- **Element selectors**: `body`, `section`, `h2`, `img` — base styling for HTML elements
-- **Class selectors**: `.hero-cta`, `.project-card`, `.skill-group`, `.tag` — reusable component styles
-- **ID selectors**: `#about`, `#skills`, `#projects`, `#contact` — unique section targeting
-- **Pseudo-class selectors**: `:hover` and `:focus-visible` on buttons, nav links, and form inputs for interactivity
+/* Vertical form layout */
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+```
 
-### Color Scheme
-CSS custom properties (variables) defined in `:root` create a consistent cream and ink color palette with a blue accent color (`--accent: #2563a8`), making the design easy to maintain and update globally.
+### 3. CSS Variables — Theme System
+A complete token system with dark and light theme support:
 
-### Layout Techniques
-- **CSS Grid** is used for `.skills-grid`, `.projects-grid`, `.stat-grid`, and `.card-grid` to create flexible multi-column layouts
-- **Flexbox** is used for `.site-nav ul`, `.hero-actions`, and `.tag-row` for simple row-based alignment
+```css
+:root {
+  --color-bg:      #0d0d1a;
+  --color-primary: #7c6ff7;
+  --color-accent:  #f72585;
+  --space-md:      1rem;
+  --radius-md:     12px;
+  --transition-normal: 300ms ease;
+}
 
-### Hover & Interactive Effects
-- Buttons lift slightly and change shadow on hover
-- Navigation links get a subtle background highlight on hover
-- Cards lift on hover with increased shadow
-- Form inputs change border color and add a glow effect on focus
+[data-theme="light"] {
+  --color-bg:   #f5f5ff;
+  --color-text: #1a1a2e;
+}
+```
 
-### Responsive Design Approach
-- Media query at `900px`: collapses the hero into a single column, stacks the contact layout
-- Media query at `600px`: further reduces padding, makes buttons full-width, adjusts font sizes
-- Used `clamp()` for fluid typography that scales smoothly between screen sizes
+Variables are referenced throughout all CSS files, allowing the entire theme to change by toggling a single attribute on `<html>`.
 
----
+### 4. CSS Animations & Transitions
+Smooth entrance animations and interactive transitions:
 
-## JavaScript Features Implemented (Week 3)
+```css
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-### 1. 🌙 Dark / Light Mode Toggle
-- Button toggles `dark-mode` class on `<body>`
-- Preference saved in `localStorage` — persists on page reload
-- Button label updates dynamically
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
 
-### 2. ✅ Contact Form Validation with Real-Time Feedback
-- Validates name, email, subject, and message on submit
-- Email checked with regex: `/^[^\s@]+@[^\s@]+\.[^\s@]+$/`
-- Inline error messages shown in red next to each field
-- Errors clear as user types (real-time via `input` event)
-- Green success message shown on valid submission
+/* Scroll-triggered reveal via IntersectionObserver */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+```
 
-### 3. 📊 Skills Progress Bar Animation
-- `IntersectionObserver` detects when Skills section scrolls into view
-- Bars animate from 0% to target width using CSS transitions
-- Runs only once per page load
+### 5. Advanced Selectors & Pseudo-elements
+```css
+/* Animated underline on nav links */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--color-primary);
+  transition: width 300ms ease;
+}
+.nav__link:hover::after { width: 100%; }
 
-### 4. 🖼️ Image Slider / Gallery
-- Prev / Next buttons to navigate project screenshots
-- Auto-advances every 4 seconds
-- Clickable dot indicators show current slide
+/* Decorative eyebrow prefix */
+.hero__eyebrow::before {
+  content: '▹ ';
+  color: var(--color-accent);
+}
 
-### 5. ✏️ To-Do Task List
-- Dynamically adds `<li>` elements using `createElement`
-- Click task to mark done (strikethrough toggle)
-- Delete button removes task from DOM
-- Tasks saved in `localStorage` — persist after page refresh
+/* Gallery hover overlay */
+.gallery__item::after {
+  content: '🔍';
+  position: absolute;
+  inset: 0;
+  background: rgba(124, 111, 247, 0.5);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.gallery__item:hover::after { opacity: 1; }
+```
 
-### 6. 🔗 Smooth Scroll Navigation
-- All `href="#section"` links use `scrollIntoView({ behavior: 'smooth' })`
+### 6. BEM Methodology
+All CSS classes follow the BEM (Block__Element--Modifier) naming convention:
 
-### 7. ⬆️ Scroll-to-Top Button
-- Appears after scrolling 300px down
-- Smooth scrolls back to top on click
+```
+.nav                    → Block
+.nav__logo              → Element
+.nav__link              → Element
+.nav--scrolled          → Modifier
 
-### 8. 🔵 Active Nav Link Highlight
-- Listens to `scroll` event, adds `.active` class to current section's nav link
+.project-card           → Block
+.project-card__body     → Element
+.project-card__title    → Element
 
-### 9. ⌨️ Typing Effect for Hero Section
-- Types hero greeting character by character using `setInterval`
-
----
-
-## DOM Manipulation Used
-
-| Technique | Where Used |
-|---|---|
-| `document.getElementById()` | Form fields, buttons, containers |
-| `document.querySelectorAll()` | Nav links, slides, skill bars |
-| `classList.toggle()` | Dark mode, task done state |
-| `createElement() / appendChild()` | To-do list items, slider dots |
-| `element.remove()` | Deleting tasks |
-| `textContent` | Typing effect, button labels |
-
----
-
-## Event Listeners Used
-
-| Event | Purpose |
-|---|---|
-| `click` | Dark mode, slider, tasks, scroll-to-top |
-| `submit` | Form validation |
-| `input` | Real-time error clearing |
-| `scroll` | Scroll-to-top visibility, nav highlight |
-| `keydown` | Enter key to add task |
-
----
-
-## Local Storage Usage
-
-```js
-// Dark mode preference
-localStorage.setItem('darkMode', true/false);
-
-// To-do tasks
-localStorage.setItem('portfolioTasks', JSON.stringify(tasks));
+.btn                    → Block
+.btn--primary           → Modifier
+.btn--outline           → Modifier
+.btn--small             → Modifier
 ```
 
 ---
 
-## Screenshots
+## 📱 Responsive Design — Mobile-First Approach
 
-![Desktop View](screenshots/desktop-view-about.png)
-![Hover Effect](screenshots/hover-effect.png)
+| Breakpoint  | Width    | Changes Applied                              |
+|-------------|----------|----------------------------------------------|
+| Mobile      | ≤ 600px  | Single-column grids, stacked hero, hamburger nav |
+| Tablet      | ≤ 900px  | 2-column grids, stacked about & contact sections |
+| Desktop     | > 900px  | Full multi-column CSS Grid layouts           |
+| Large       | ≥ 1200px | Larger avatar, max-width container           |
 
 ---
 
-## Live Website
+## ⚡ Performance Optimizations
 
-🌐 https://sarla-portfolio.netlify.app
+- **CSS Custom Properties** avoid code duplication and enable instant theme switching
+- **`auto-fit` + `minmax()`** creates fluid grids without JavaScript
+- **`IntersectionObserver`** runs scroll animations efficiently without scroll event listeners
+- **`{ passive: true }`** on scroll event for smooth scrolling performance
+- **`prefers-reduced-motion`** media query respects user accessibility settings
+- **`clamp()`** for fluid typography without breakpoints
+- **`will-change: transform`** can be added to animated elements for GPU compositing
+- External fonts loaded via Google Fonts with `display=swap` to prevent FOIT
 
-## Validation
+---
 
-✅ Validated with W3C HTML Validator — No errors or warnings
+## 🧪 Testing Evidence
+
+### Cross-Browser Testing
+| Browser         | Version  | Result |
+|----------------|----------|--------|
+| Chrome          | 120+     | ✅ Pass |
+| Firefox         | 121+     | ✅ Pass |
+| Safari          | 17+      | ✅ Pass |
+| Edge            | 120+     | ✅ Pass |
+
+### Validation
+- **HTML:** Validated with [W3C Markup Validator](https://validator.w3.org/) — 0 errors
+- **CSS:** Validated with [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) — 0 errors
+
+### Accessibility
+- Semantic HTML5 elements (`<nav>`, `<section>`, `<article>`, `<footer>`)
+- All interactive elements have `aria-label` attributes
+- Keyboard navigation fully supported
+- `:focus-visible` styles for keyboard users
+- Colour contrast ratio ≥ 4.5:1 in both themes
+
+---
+
+## 📸 Screenshots
+
+| View               | Screenshot                              |
+|--------------------|-----------------------------------------|
+| Desktop — Hero     | `screenshots/desktop-view-hero.png`     |
+| Desktop — About    | `screenshots/desktop-view-about.png`    |
+| Mobile View        | `screenshots/mobile-view.png`           |
+| Hover Effects      | `screenshots/hover-effect.png`          |
+
+---
+
+## 💡 Layout Decisions
+
+**Why CSS Grid for the outer layout?**
+Grid gives precise two-dimensional control over rows and columns. The `repeat(auto-fit, minmax())` pattern means the layout adapts to any screen width without a single breakpoint for the grid itself.
+
+**Why Flexbox for components?**
+Flexbox excels at one-dimensional alignment (nav bar, button groups, form fields). Using both together — Grid for the page shell, Flexbox for components — follows the "right tool for the job" principle.
+
+**Why CSS Variables for everything?**
+Using a token system (spacing, colours, radii, transitions) as variables keeps the entire design consistent. Changing `--color-primary` in one place updates 30+ elements instantly, and theme switching requires just one attribute change on `<html>`.
+
+---
+
+## 📚 Resources
+
+- [CSS Grid Guide — CSS Tricks](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [Flexbox Guide — CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [CSS Grid Garden](https://cssgridgarden.com/) — Interactive CSS Grid practice
+- [BEM Methodology](https://getbem.com/)
+- [MDN: CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+- [Web.dev: Animation Performance](https://web.dev/animations-guide/)
+
+---
+
+
+

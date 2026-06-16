@@ -362,3 +362,110 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('✅ Portfolio JS loaded successfully!');
 });
+/**
+ * script.js
+ * Extra interactivity: navbar scroll, hamburger, contact form, scroll reveal.
+ * Week 5: Advanced CSS & Modern Layouts
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Set current year in footer ─────────────────────── */
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ── Navbar: add shadow/bg on scroll ────────────────── */
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('nav--scrolled', window.scrollY > 50);
+    }, { passive: true });
+  }
+
+  /* ── Hamburger menu toggle ───────────────────────────── */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.querySelector('.nav__links');
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('nav__links--open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close menu when a link is clicked (mobile UX)
+    navLinks.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('nav__links--open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ── Contact form ────────────────────────────────────── */
+  const contactForm   = document.getElementById('contactForm');
+  const formSuccess   = document.getElementById('formSuccess');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (formSuccess) {
+        formSuccess.hidden = false;
+        // Hide success message after 5 seconds
+        setTimeout(() => { formSuccess.hidden = true; }, 5000);
+      }
+      contactForm.reset();
+    });
+  }
+
+  /* ── Scroll reveal via IntersectionObserver ──────────── */
+  const revealEls = document.querySelectorAll(
+    '.skill-card, .project-card, .cert-card, .stat-card'
+  );
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('scroll-reveal', 'visible');
+            observer.unobserve(entry.target); // only animate once
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealEls.forEach(el => {
+      el.classList.add('scroll-reveal'); // start hidden (CSS handles this)
+      observer.observe(el);
+    });
+  } else {
+    // Fallback: just show everything for older browsers
+    revealEls.forEach(el => el.classList.add('scroll-reveal', 'visible'));
+  }
+
+  /* ── Smooth active nav link highlight ───────────────── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinkEls = document.querySelectorAll('.nav__link');
+
+  if (sections.length && navLinkEls.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinkEls.forEach(link => {
+              link.classList.toggle(
+                'nav__link--active',
+                link.getAttribute('href') === `#${entry.target.id}`
+              );
+            });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    sections.forEach(section => sectionObserver.observe(section));
+  }
+
+});
